@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrubCaddieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Number" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="GolfCourse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Lon" Type="nvarchar(max)" />
+    <Property Name="Lat" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="ImageSource" Type="nvarchar(max)" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="ImageFileType" Type="nvarchar(max)" />
+    <Property Name="ImageCaption" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageSource" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Size" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" />
+    <Property Name="ImageFileType" Type="nvarchar(max)" />
+    <Property Name="ImageCaption" Type="nvarchar(max)" />
+    <Property Name="Menu_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="Lat" Type="nvarchar(max)" />
+    <Property Name="Lon" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="MenuId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LoginId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_GolfCourse_dbo_Profile_Profile_Id">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="GolfCourse" Type="Self.GolfCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GolfCourse">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_MenuItem_dbo_Menu_Menu_Id">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuItem">
+        <PropertyRef Name="Menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OrderDetail_dbo_Order_OrderId">
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Profile_dbo_Login_LoginId">
+    <End Role="Login" Type="Self.Login" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GrubCaddieModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GolfCourse" EntityType="Self.GolfCourse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_GolfCourse_dbo_Profile_Profile_Id" Association="Self.FK_dbo_GolfCourse_dbo_Profile_Profile_Id">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="GolfCourse" EntitySet="GolfCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_MenuItem_dbo_Menu_Menu_Id" Association="Self.FK_dbo_MenuItem_dbo_Menu_Menu_Id">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="MenuItem" EntitySet="MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OrderDetail_dbo_Order_OrderId" Association="Self.FK_dbo_OrderDetail_dbo_Order_OrderId">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Profile_dbo_Login_LoginId" Association="Self.FK_dbo_Profile_dbo_Login_LoginId">
+      <End Role="Login" EntitySet="Login" />
+      <End Role="Profile" EntitySet="Profile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

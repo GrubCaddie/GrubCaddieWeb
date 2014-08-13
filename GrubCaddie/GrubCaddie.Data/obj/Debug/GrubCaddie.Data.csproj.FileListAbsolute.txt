@@ -1,0 +1,9 @@
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\GrubCaddie.Data.dll.config
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\GrubCaddie.Data.dll
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\GrubCaddie.Data.pdb
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\EntityFramework.dll
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\EntityFramework.xml
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\obj\Debug\GrubCaddie.Data.dll
+C:\Projects\GrubCaddie\MVC\GrubCaddie\GrubCaddie.Data\obj\Debug\GrubCaddie.Data.pdb

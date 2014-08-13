@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dbae3588a5c04b099a602ab4fc2412e5" Name="Diagram1">
+        <EntityTypeShape EntityType="GrubCaddieModel.Account" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GrubCaddieModel.Order" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GrubCaddieModel.OrderDetail" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="GrubCaddieModel.FK_dbo_OrderDetail_dbo_Order_OrderId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GrubCaddieModel.GolfCourse" Width="1.5" PointX="9.875" PointY="7" />
+        <EntityTypeShape EntityType="GrubCaddieModel.Login" Width="1.5" PointX="5.375" PointY="7.125" />
+        <EntityTypeShape EntityType="GrubCaddieModel.Menu" Width="1.5" PointX="8.375" PointY="1.25" />
+        <EntityTypeShape EntityType="GrubCaddieModel.MenuItem" Width="1.5" PointX="10.625" PointY="1" />
+        <EntityTypeShape EntityType="GrubCaddieModel.Profile" Width="1.5" PointX="7.625" PointY="7" />
+        <AssociationConnector Association="GrubCaddieModel.FK_dbo_GolfCourse_dbo_Profile_Profile_Id" />
+        <AssociationConnector Association="GrubCaddieModel.FK_dbo_Profile_dbo_Login_LoginId" />
+        <AssociationConnector Association="GrubCaddieModel.FK_dbo_MenuItem_dbo_Menu_Menu_Id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
